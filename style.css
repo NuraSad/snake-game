@@ -1,0 +1,115 @@
+body {
+  background-image: url("./backgroundImage.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  background-attachment: fixed;
+  height: auto;
+  width: 100vw;
+  margin: 0px;
+  background-color: black;
+  font-family: "Press Start 2P", cursive;
+}
+
+#canvas-container {
+  height: 55vh;
+  width: 55vh;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0px;
+  align-items: center;
+}
+
+#gameCanvas {
+  height: 55vh;
+  width: 55vh;
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0px;
+}
+
+#score {
+  text-align: center;
+  font-size: 8vh;
+}
+
+.popUp {
+  box-sizing: border-box;
+  width: 400px;
+  height: 200px;
+  background: white;
+  border: 2px solid black;
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0px 0px 60px 170px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  visibility: hidden;
+  font-size: 1.5rem;
+}
+
+.popUp-gameover {
+  visibility: visible;
+}
+
+.popUp h2 {
+  font-size: 38px;
+  font-weight: 500;
+  margin: 0%;
+}
+
+.popUp p {
+  font-size: 20px;
+  margin: 0;
+}
+
+button {
+  border: 0;
+  width: 60px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #2a1f62;
+  cursor: pointer;
+  font-family: "Press Start 2P", cursive;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+}
+
+#btnStart {
+  background: lightblue;
+  visibility: visible;
+  position: absolute;
+  top: 43%;
+  left: 47%;
+  font-size: 2.5vh;
+  width: fit-content;
+  margin: 0px;
+}
+
+#btnYes {
+  background: greenyellow;
+  margin-right: 5px;
+  margin-left: 15px;
+}
+
+#btnNo {
+  background: red;
+  margin-left: 5px;
+}
+
+#btnOK {
+  background: lightblue;
+  visibility: hidden;
+  width: 0;
+}
