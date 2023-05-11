@@ -1,22 +1,37 @@
 const snakeboard = document.getElementById("gameCanvas");
 const snakeboardCtx = gameCanvas.getContext("2d");
+const silenceSound = new Audio("silence.mp3");
 let canvasHeight = Math.round(document.documentElement.clientHeight * 0.55);
+let canvasWidth = Math.round(document.documentElement.clientWidth * 0.4);
+let canvasSize = Math.min(canvasHeight, canvasWidth);
 const btnStart = document.getElementById("btnStart");
 const popUp = document.getElementById("popUp");
 const btnYes = document.getElementById("btnYes");
 const btnNo = document.getElementById("btnNo");
 const btnOK = document.getElementById("btnOK");
-const eatSound = new Audio("eatFood.wav");
+const checkBox = document.getElementById("mute");
+let unmute = false;
+checkBox.addEventListener("change", (event) => {
+  if (event.currentTarget.checked) {
+    unmute = true;
+    backgroundSound.play();
+  } else {
+    backgroundSound.pause();
+    unmute = false;
+  }
+});
+const backgroundSound = new Audio("backgroundMusic.mp3");
+backgroundSound.loop = true;
 const endGame = new Audio("lose.wav");
 eatSound.volume = 0.3;
 endGame.volume = 0.5;
+
 let score = 0;
 let maxScore = 0;
-const step = Math.floor(canvasHeight / 40);
+let step = Math.floor(canvasSize / 40);
 snakeboard.height = step * 40;
 snakeboard.width = snakeboard.height;
-console.log(snakeboard.height);
-const startPosition = step * 20;
+let startPosition = step * 20;
 
 let snake = [
   { x: startPosition, y: startPosition },
@@ -35,12 +50,24 @@ let dx = step;
 let dy = 0;
 let changingDirection = false;
 
+silenceSound.play();
+
 clearCanvas();
 
 btnStart.addEventListener("click", startGame);
 
 function startGame() {
   btnStart.style.visibility = "hidden";
+  canvasHeight = Math.round(document.documentElement.clientHeight * 0.55);
+  canvasWidth = Math.round(document.documentElement.clientWidth * 0.4);
+  canvasSize = Math.min(canvasHeight, canvasWidth);
+  step = Math.floor(canvasSize / 40);
+  snakeboard.height = step * 40;
+  snakeboard.width = snakeboard.height;
+  startPosition = step * 20;
+  if (unmute) {
+    backgroundSound.play();
+  }
   start();
   foodCoordinate();
 }
@@ -58,8 +85,11 @@ function start() {
     drawFood();
     moveSnake();
     if (hasGameEnded()) {
-      endGame.play();
-      console.log(snake);
+      if (unmute) {
+        backgroundSound.pause();
+        backgroundSound.currentTime = 0;
+        endGame.play();
+      }
       maxScore = Math.max(maxScore, score);
       popUp.classList.add("popUp-gameover");
       return;
@@ -106,12 +136,20 @@ function foodCoordinate() {
   });
 }
 
+function eatSound() {
+  const audio = new Audio("eatFood.wav");
+  audio.play();
+}
+
 function moveSnake() {
   const head = { x: snake[0].x + dx, y: snake[0].y + dy };
   snake.unshift(head);
   const hasEatenFood = snake[0].x == food.x && snake[0].y == food.y;
   if (hasEatenFood) {
-    eatSound.play();
+    if (unmute) {
+      // Have to create sound each time because previous may not finish
+      eatSound();
+    }
     score += 10;
     document.getElementById("score").textContent = "Score: " + score;
     // Generate new food location
@@ -175,6 +213,14 @@ function restart() {
   popUp.classList.remove("popUp-gameover");
   score = 0;
   document.getElementById("score").textContent = "Score: " + score;
+  canvasHeight = Math.round(document.documentElement.clientHeight * 0.55);
+  canvasWidth = Math.round(document.documentElement.clientWidth * 0.4);
+  canvasSize = Math.min(canvasHeight, canvasWidth);
+  step = Math.floor(canvasSize / 40);
+  snakeboard.height = step * 40;
+  snakeboard.width = snakeboard.height;
+  startPosition = step * 20;
+
   snake = [
     { x: startPosition, y: startPosition },
     { x: startPosition - step, y: startPosition },
@@ -187,6 +233,9 @@ function restart() {
   changingDirection = false;
   start();
   foodCoordinate();
+  if (unmute) {
+    backgroundSound.play();
+  }
 }
 
 function showGameStats() {
@@ -196,7 +245,7 @@ function showGameStats() {
   btnNo.parentNode.removeChild(btnNo);
   btnYes.parentNode.removeChild(btnYes);
   btnOK.style.visibility = "visible";
-  btnOK.style.width = "120px";
+  btnOK.style.width = "min-content";
 }
 
 function reloadPage() {

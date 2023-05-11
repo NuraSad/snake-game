@@ -14,12 +14,22 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="score">Score: 0</div>
-    <audio loop controls src="backgroundMusic.mp3" type="audio/mp3"></audio>
-    <!-- <div id="canvas-container"> -->
-    <canvas id="gameCanvas"></canvas>
-    <button id="btnStart">Start</button>
-    <!-- </div> -->
+    <h1>Snake Game</h1>
+    <div id="gameField">
+      <div id="media">
+        <p>Choose sound settings:</p>
+        <div>
+          <label for="mute">Sound on/off</label>
+          <input type="checkbox" id="mute" name="mute" />
+        </div>
+      </div>
+      <div id="canvasField">
+        <canvas id="gameCanvas"></canvas>
+        <button id="btnStart">Start</button>
+      </div>
+      <div id="score">Score: 0</div>
+    </div>
+    <div id="footer"></div>
     <div id="popUp" class="popUp">
       <h2 id="popUpTitle">Game over!</h2>
       <p id="popUpMessage">Want to play again?</p>
@@ -33,3 +43,6 @@
     <script src="script.js"></script>
   </body>
 </html>
+
+<!-- to solve: 
+1. stick content to the center of page -->

@@ -2,45 +2,73 @@ body {
   background-image: url("./backgroundImage.png");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center center;
+  background-position: center;
   background-attachment: fixed;
-  height: auto;
   width: 100vw;
+  height: 100vh;
   margin: 0px;
   background-color: black;
   font-family: "Press Start 2P", cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-#canvas-container {
-  height: 55vh;
-  width: 55vh;
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0px;
+h1 {
+  width: 100vw;
+  text-align: center;
+  color: yellow;
+  font-size: 5vmin;
+  margin-bottom: 5vmin;
+}
+
+#gameField {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 16vw;
+}
+
+#media {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  column-gap: 10px;
+  width: min-content;
+  font-size: 1.2vmin;
+  color: white;
+}
+
+label {
+  font-size: 1vmin;
+}
+
+#canvasField {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 #gameCanvas {
-  height: 55vh;
-  width: 55vh;
-  position: absolute;
-  top: 43%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: min(40vw, 55vh);
+  width: min(40vw, 55vh);
   margin: 0px;
 }
 
 #score {
+  color: white;
+  width: min-content;
   text-align: center;
-  font-size: 8vh;
+  font-size: 2.5vmin;
 }
 
 .popUp {
   box-sizing: border-box;
-  width: 400px;
-  height: 200px;
+  width: 18vw;
+  height: 15vh;
   background: white;
   border: 2px solid black;
   position: absolute;
@@ -53,7 +81,6 @@ body {
   align-items: center;
   justify-content: space-evenly;
   visibility: hidden;
-  font-size: 1.5rem;
 }
 
 .popUp-gameover {
@@ -61,26 +88,27 @@ body {
 }
 
 .popUp h2 {
-  font-size: 38px;
+  font-size: 2vmin;
   font-weight: 500;
   margin: 0%;
+  text-align: center;
 }
 
 .popUp p {
-  font-size: 20px;
+  font-size: 1.5vmin;
   margin: 0;
+  text-align: center;
 }
 
 button {
   border: 0;
-  width: 60px;
+  width: min-content;
   border-radius: 8px;
   box-sizing: border-box;
   color: #2a1f62;
   cursor: pointer;
   font-family: "Press Start 2P", cursive;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 1.5vmin;
   padding: 8px;
   position: relative;
   text-align: center;
@@ -89,10 +117,7 @@ button {
 #btnStart {
   background: lightblue;
   visibility: visible;
-  position: absolute;
-  top: 43%;
-  left: 47%;
-  font-size: 2.5vh;
+  font-size: 2vmin;
   width: fit-content;
   margin: 0px;
 }
@@ -112,4 +137,8 @@ button {
   background: lightblue;
   visibility: hidden;
   width: 0;
+}
+
+#footer {
+  flex-grow: 2;
 }
