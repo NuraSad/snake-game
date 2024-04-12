@@ -1,8 +1,24 @@
 const snakeboard = document.getElementById("gameCanvas");
 const snakeboardCtx = gameCanvas.getContext("2d");
 const silenceSound = new Audio("silence.mp3");
-let canvasHeight = Math.round(document.documentElement.clientHeight * 0.55);
-let canvasWidth = Math.round(document.documentElement.clientWidth * 0.4);
+// check if it's a Retina display
+function backingScale() {
+  if ("devicePixelRatio" in window) {
+    if (window.devicePixelRatio > 1) {
+      return window.devicePixelRatio;
+    }
+  }
+  return 1;
+}
+
+const scaleFactor = backingScale();
+
+let canvasHeight = Math.round(
+  document.documentElement.clientHeight * 0.55 * scaleFactor
+);
+let canvasWidth = Math.round(
+  document.documentElement.clientWidth * 0.4 * scaleFactor
+);
 let canvasSize = Math.min(canvasHeight, canvasWidth);
 const btnStart = document.getElementById("btnStart");
 const popUp = document.getElementById("popUp");
@@ -57,13 +73,6 @@ btnStart.addEventListener("click", startGame);
 
 function startGame() {
   btnStart.style.visibility = "hidden";
-  canvasHeight = Math.round(document.documentElement.clientHeight * 0.55);
-  canvasWidth = Math.round(document.documentElement.clientWidth * 0.4);
-  canvasSize = Math.min(canvasHeight, canvasWidth);
-  step = Math.floor(canvasSize / 40);
-  snakeboard.height = step * 40;
-  snakeboard.width = snakeboard.height;
-  startPosition = step * 20;
   if (unmute) {
     backgroundSound.play();
   }
@@ -213,8 +222,12 @@ function restart() {
   popUp.classList.remove("popUp-gameover");
   score = 0;
   document.getElementById("score").textContent = "Score: " + score;
-  canvasHeight = Math.round(document.documentElement.clientHeight * 0.55);
-  canvasWidth = Math.round(document.documentElement.clientWidth * 0.4);
+  canvasHeight = Math.round(
+    document.documentElement.clientHeight * 0.55 * scaleFactor
+  );
+  canvasWidth = Math.round(
+    document.documentElement.clientWidth * 0.4 * scaleFactor
+  );
   canvasSize = Math.min(canvasHeight, canvasWidth);
   step = Math.floor(canvasSize / 40);
   snakeboard.height = step * 40;

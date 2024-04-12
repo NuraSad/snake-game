@@ -43,12 +43,12 @@ h1 {
   align-items: flex-start;
   column-gap: 10px;
   width: min-content;
-  font-size: 1.2vmin;
+  font-size: 1.4vmin;
   color: white;
 }
 
 label {
-  font-size: 1vmin;
+  font-size: 1.2vmin;
 }
 
 #canvasField {
@@ -111,7 +111,7 @@ label {
 
 button {
   border: 0;
-  width: min-content;
+  width: 5vw;
   border-radius: 8px;
   box-sizing: border-box;
   color: #2a1f62;
