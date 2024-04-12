@@ -23,7 +23,6 @@ checkBox.addEventListener("change", (event) => {
 const backgroundSound = new Audio("backgroundMusic.mp3");
 backgroundSound.loop = true;
 const endGame = new Audio("lose.wav");
-eatSound.volume = 0.3;
 endGame.volume = 0.5;
 
 let score = 0;
@@ -136,9 +135,10 @@ function foodCoordinate() {
   });
 }
 
-function eatSound() {
-  const audio = new Audio("eatFood.wav");
-  audio.play();
+function makeEatSound() {
+  const eatSound = new Audio("eatFood.wav");
+  eatSound.volume = 0.3;
+  eatSound.play();
 }
 
 function moveSnake() {
@@ -148,7 +148,7 @@ function moveSnake() {
   if (hasEatenFood) {
     if (unmute) {
       // Have to create sound each time because previous may not finish
-      eatSound();
+      makeEatSound();
     }
     score += 10;
     document.getElementById("score").textContent = "Score: " + score;
