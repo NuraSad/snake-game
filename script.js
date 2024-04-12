@@ -81,6 +81,17 @@ function startGame() {
 }
 
 document.addEventListener("keydown", changeDirection);
+document.addEventListener("keydown", (event) => {
+  if (event.code === "KeyM") {
+    unmute = !unmute;
+    checkBox.checked = unmute;
+    if (unmute) {
+      backgroundSound.play();
+    } else {
+      backgroundSound.pause();
+    }
+  }
+});
 btnYes.addEventListener("click", restart);
 btnNo.addEventListener("click", showGameStats);
 btnOK.addEventListener("click", reloadPage);
