@@ -42,13 +42,42 @@ h1 {
   flex-direction: column;
   align-items: flex-start;
   column-gap: 10px;
-  width: min-content;
+  width: 12.5rem;
   font-size: 1.4vmin;
   color: white;
 }
 
 label {
   font-size: 1.2vmin;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li:first-of-type {
+  margin-top: 15px;
+}
+
+li span {
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4vmin;
+  width: 1.3rem;
+  height: 1.3rem;
+  padding: 5px;
+}
+
+li {
+  font-size: 1.2vmin;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 15px;
 }
 
 #canvasField {
