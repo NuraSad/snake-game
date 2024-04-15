@@ -4,6 +4,9 @@ Welcome to the Snake Game! This classic arcade game is implemented using Vanilla
 
 **Live Demo:** [https://nurasad.github.io/snake-game/](https://nurasad.github.io/snake-game/)
 
+<picture>
+ <img alt="Game screenshot" src="start-snake-game.png">
+</picture>
 
 ## Features
 
